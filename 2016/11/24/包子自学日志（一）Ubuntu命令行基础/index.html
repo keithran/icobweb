@@ -13,11 +13,11 @@
 
     <title>
         
-          Hello World - Keith的博客 | Keith&#39;s Blog
+          包子自学日志（一）Ubuntu命令行基础 - Keith的博客 | Keith&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://icobweb.com/2016/11/21/hello-world/">
+    <link rel="canonical" href="http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行基础/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -158,12 +158,14 @@
                 <div class="post-heading">
                     <div class="tags">
                         
+                          <a class="tag" href="/tags/#Ubuntu,学习日志" title="Ubuntu,学习日志">Ubuntu,学习日志</a>
+                        
                     </div>
-                    <h1>Hello World</h1>
-                    <h2 class="subheading"></h2>
+                    <h1>包子自学日志（一）Ubuntu命令行基础</h1>
+                    <h2 class="subheading">BaoZi&#39;s Learning Journal(1) The Command line of Ubuntu</h2>
                     <span class="meta">
                         Posted by Keith Ran on
-                        2016-11-21
+                        2016-11-24
                     </span>
                 </div>
             </div>
@@ -182,15 +184,16 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
+                <p>以前根本没接触过Linux操作系统，类生系统就玩过IOS，所以算是从零学起。因为工作类型的关系，我工作的一年半中基本没敲打过什么代码，每天都是产品的工作，需求调研、准备路演材料、设计原型、写PRD文档等等。</p>
+<p>其实在这些过程中，我也学到不少东西，但总觉得少了一点什么。直到有一天我在<a href="http://www.pmcaff.com/" target="_blank" rel="external">PMCAFF</a>上看到一段文字：<strong><em>“懂不懂技术并不是评价一个产品经理优劣的标准，但是多一项技能未尝不是一件好事”。</em></strong>打动我的不是这段文字有多么的感染力，而是它提醒了我：做人呢最重要的就是开心。<br>其实提醒我的是：<strong>不要止步，继续向前。</strong></p>
+<h2 id="开始我学习日志的第一章吧"><a href="#开始我学习日志的第一章吧" class="headerlink" title="开始我学习日志的第一章吧"></a>开始我学习日志的第一章吧</h2><p>其实我一开始自学的是Python，但是被一个大神引领到了奇怪的领域，所以开始并发式的学习，反正都有互相促进的地方。</p>
+<h3 id="首先安装Ubuntu系统"><a href="#首先安装Ubuntu系统" class="headerlink" title="首先安装Ubuntu系统"></a>首先安装Ubuntu系统</h3><p>这个步骤，我选择直接跳过···想分享的小伙伴直接百度吧</p>
+<h3 id="安装vim"><a href="#安装vim" class="headerlink" title="安装vim"></a>安装vim</h3><p>我选择使用vim作为我的主要文本编辑器（大神推荐，不过用上手了，的确挺棒的）。这款文本编辑器有3大特点：  </p>
+<ul>
+<li>不设置一下，真的不能用······  </li>
+<li>设置完成后，瞬间变身一款超轻巧强大的IDE  </li>
+<li>可玩性较高，学vim，我学了好久······<br><img src="包子自学日志（一）Ubuntu命令行基础/安装VIM.png" alt="s"></li>
+</ul>
 
 
                 <hr>
@@ -200,11 +203,11 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/11/21/hello-world/"
-                    data-title="Hello World"
-                    data-url="http://icobweb.com/2016/11/21/hello-world/"
+                    data-thread-key="2016/11/24/包子自学日志（一）Ubuntu命令行基础/"
+                    data-title="包子自学日志（一）Ubuntu命令行基础"
+                    data-url="http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行基础/"
                     data-images=""
-                    data-content="Welcome to Hexo! This is your very first post. ... | Keith的博客 | Keith&#39;s Blog " >
+                    data-content="以前根本没接触过Linux操作系统，类生系统就玩过IOS，所以算是从零学起。因为工作类型的关系... | Keith的博客 | Keith&#39;s Blog " >
                     <div class="ds-share-inline">
                       <ul  class="ds-share-icons-16">
                         <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
@@ -222,10 +225,10 @@
 
                 <ul class="pager">
                     
-                        <li class="previous">
-                            <a href="/2016/11/21/为什么开始写Blog？/" data-toggle="tooltip" data-placement="top" title="为什么开始写Blog？">&larr; Previous Post</a>
-                        </li>
                     
+                        <li class="next">
+                            <a href="/2016/11/24/GitHub搭建博客笔记（一）Jekyll建站/" data-toggle="tooltip" data-placement="top" title="GitHub搭建博客笔记（一）Jekyll建站">Next Post &rarr;</a>
+                        </li>
                     
                 </ul>
 
@@ -233,9 +236,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/11/21/hello-world/"
-                        data-title="Hello World"
-                        data-url="http://icobweb.com/2016/11/21/hello-world/" >
+                        data-thread-key="2016/11/24/包子自学日志（一）Ubuntu命令行基础/"
+                        data-title="包子自学日志（一）Ubuntu命令行基础"
+                        data-url="http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行基础/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -267,6 +270,8 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#Ubuntu,学习日志" title="Ubuntu,学习日志">Ubuntu,学习日志</a>
+                        
                     </div>
                 </section>
                 
@@ -317,8 +322,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "keithran23";
-    var disqus_identifier = "http://icobweb.com/2016/11/21/hello-world/";
-    var disqus_url = "http://icobweb.com/2016/11/21/hello-world/";
+    var disqus_identifier = "http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行基础/";
+    var disqus_url = "http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行基础/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

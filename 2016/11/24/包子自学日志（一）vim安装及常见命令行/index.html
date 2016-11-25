@@ -13,11 +13,11 @@
 
     <title>
         
-          包子自学日志（一）Ubuntu命令行 - Keith的博客 | Keith&#39;s Blog
+          包子自学日志（一）vim安装及常见命令行 - Keith的博客 | Keith&#39;s Blog
         
     </title>
 
-    <link rel="canonical" href="http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行/">
+    <link rel="canonical" href="http://icobweb.com/2016/11/24/包子自学日志（一）vim安装及常见命令行/">
 
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="/css/bootstrap.min.css">
@@ -90,14 +90,14 @@
 
                         
                         <li>
-                            <a href="/archives/">Archives</a>
+                            <a href="/about/">About</a>
                         </li>
                         
                     
 
                         
                         <li>
-                            <a href="/about/">About</a>
+                            <a href="/archives/">Archives</a>
                         </li>
                         
                     
@@ -165,13 +165,15 @@
                 <div class="post-heading">
                     <div class="tags">
                         
-                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
-                        
                           <a class="tag" href="/tags/#学习日志" title="学习日志">学习日志</a>
                         
+                          <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
+                        
+                          <a class="tag" href="/tags/#vim" title="vim">vim</a>
+                        
                     </div>
-                    <h1>包子自学日志（一）Ubuntu命令行</h1>
-                    <h2 class="subheading">BaoZi&#39;s Learning Journal(1) The Command line of Ubuntu</h2>
+                    <h1>包子自学日志（一）vim安装及常见命令行</h1>
+                    <h2 class="subheading">BaoZi&#39;s Learning Journal(1) Install vim &amp; The Command line of Ubuntu</h2>
                     <span class="meta">
                         Posted by Keith Ran on
                         2016-11-24
@@ -193,19 +195,21 @@
                 col-md-10 col-md-offset-1
                 post-container">
 
-                <p>&#x4EE5;&#x524D;&#x6839;&#x672C;&#x6CA1;&#x63A5;&#x89E6;&#x8FC7;Linux&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x7C7B;&#x751F;&#x7CFB;&#x7EDF;&#x5C31;&#x73A9;&#x8FC7;IOS&#xFF0C;&#x6240;&#x4EE5;&#x7B97;&#x662F;&#x4ECE;&#x96F6;&#x5B66;&#x8D77;&#x3002;&#x56E0;&#x4E3A;&#x5DE5;&#x4F5C;&#x7C7B;&#x578B;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x6211;&#x5DE5;&#x4F5C;&#x7684;&#x4E00;&#x5E74;&#x534A;&#x4E2D;&#x57FA;&#x672C;&#x6CA1;&#x6572;&#x6253;&#x8FC7;&#x4EC0;&#x4E48;&#x4EE3;&#x7801;&#xFF0C;&#x6BCF;&#x5929;&#x90FD;&#x662F;&#x4EA7;&#x54C1;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x9700;&#x6C42;&#x8C03;&#x7814;&#x3001;&#x51C6;&#x5907;&#x8DEF;&#x6F14;&#x6750;&#x6599;&#x3001;&#x8BBE;&#x8BA1;&#x539F;&#x578B;&#x3001;&#x5199;PRD&#x6587;&#x6863;&#x7B49;&#x7B49;&#x3002;</p>
-<p>&#x5176;&#x5B9E;&#x5728;&#x8FD9;&#x4E9B;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6211;&#x4E5F;&#x5B66;&#x5230;&#x4E0D;&#x5C11;&#x4E1C;&#x897F;&#xFF0C;&#x4F46;&#x603B;&#x89C9;&#x5F97;&#x5C11;&#x4E86;&#x4E00;&#x70B9;&#x4EC0;&#x4E48;&#x3002;&#x76F4;&#x5230;&#x6709;&#x4E00;&#x5929;&#x6211;&#x5728;<a href="http://www.pmcaff.com/" target="_blank" rel="external">PMCAFF</a>&#x4E0A;&#x770B;&#x5230;&#x4E00;&#x6BB5;&#x6587;&#x5B57;&#xFF1A;<strong><em>&#x201C;&#x61C2;&#x4E0D;&#x61C2;&#x6280;&#x672F;&#x5E76;&#x4E0D;&#x662F;&#x8BC4;&#x4EF7;&#x4E00;&#x4E2A;&#x4EA7;&#x54C1;&#x7ECF;&#x7406;&#x4F18;&#x52A3;&#x7684;&#x6807;&#x51C6;&#xFF0C;&#x4F46;&#x662F;&#x591A;&#x4E00;&#x9879;&#x6280;&#x80FD;&#x672A;&#x5C1D;&#x4E0D;&#x662F;&#x4E00;&#x4EF6;&#x597D;&#x4E8B;&#x201D;&#x3002;</em></strong>&#x6253;&#x52A8;&#x6211;&#x7684;&#x4E0D;&#x662F;&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#x6709;&#x591A;&#x4E48;&#x7684;&#x611F;&#x67D3;&#x529B;&#xFF0C;&#x800C;&#x662F;&#x5B83;&#x63D0;&#x9192;&#x4E86;&#x6211;&#xFF1A;&#x505A;&#x4EBA;&#x5462;&#x6700;&#x91CD;&#x8981;&#x7684;&#x5C31;&#x662F;&#x5F00;&#x5FC3;&#x3002;<br>&#x5176;&#x5B9E;&#x63D0;&#x9192;&#x6211;&#x7684;&#x662F;&#xFF1A;<strong>&#x4E0D;&#x8981;&#x6B62;&#x6B65;&#xFF0C;&#x7EE7;&#x7EED;&#x5411;&#x524D;&#x3002;</strong></p>
-<h2 id="&#x5F00;&#x59CB;&#x6211;&#x5B66;&#x4E60;&#x65E5;&#x5FD7;&#x7684;&#x7B2C;&#x4E00;&#x7AE0;&#x5427;"><a href="#&#x5F00;&#x59CB;&#x6211;&#x5B66;&#x4E60;&#x65E5;&#x5FD7;&#x7684;&#x7B2C;&#x4E00;&#x7AE0;&#x5427;" class="headerlink" title="&#x5F00;&#x59CB;&#x6211;&#x5B66;&#x4E60;&#x65E5;&#x5FD7;&#x7684;&#x7B2C;&#x4E00;&#x7AE0;&#x5427;"></a>&#x5F00;&#x59CB;&#x6211;&#x5B66;&#x4E60;&#x65E5;&#x5FD7;&#x7684;&#x7B2C;&#x4E00;&#x7AE0;&#x5427;</h2><p>&#x5176;&#x5B9E;&#x6211;&#x4E00;&#x5F00;&#x59CB;&#x81EA;&#x5B66;&#x7684;&#x662F;Python&#xFF0C;&#x4F46;&#x662F;&#x88AB;&#x4E00;&#x4E2A;&#x5927;&#x795E;&#x5F15;&#x9886;&#x5230;&#x4E86;&#x5947;&#x602A;&#x7684;&#x9886;&#x57DF;&#xFF0C;&#x6240;&#x4EE5;&#x5F00;&#x59CB;&#x5E76;&#x53D1;&#x5F0F;&#x7684;&#x5B66;&#x4E60;&#xFF0C;&#x53CD;&#x6B63;&#x90FD;&#x6709;&#x4E92;&#x76F8;&#x4FC3;&#x8FDB;&#x7684;&#x5730;&#x65B9;&#x3002;</p>
-<h3 id="&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;"><a href="#&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;" class="headerlink" title="&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;"></a>&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;</h3><p>&#x8FD9;&#x4E2A;&#x6B65;&#x9AA4;&#xFF0C;&#x6211;&#x9009;&#x62E9;&#x76F4;&#x63A5;&#x8DF3;&#x8FC7;&#xB7;&#xB7;&#xB7;&#x60F3;&#x5206;&#x4EAB;&#x7684;&#x5C0F;&#x4F19;&#x4F34;&#x76F4;&#x63A5;&#x767E;&#x5EA6;&#x3002;</p>
-<h3 id="&#x5B89;&#x88C5;vim"><a href="#&#x5B89;&#x88C5;vim" class="headerlink" title="&#x5B89;&#x88C5;vim"></a>&#x5B89;&#x88C5;vim</h3><p>&#x6211;&#x9009;&#x62E9;&#x4F7F;&#x7528;vim&#x4F5C;&#x4E3A;&#x6211;&#x7684;&#x4E3B;&#x8981;&#x6587;&#x672C;&#x7F16;&#x8F91;&#x5668;&#xFF08;&#x5927;&#x795E;&#x63A8;&#x8350;&#xFF0C;&#x4E0D;&#x8FC7;&#x7528;&#x4E0A;&#x624B;&#x4E86;&#xFF0C;&#x7684;&#x786E;&#x633A;&#x68D2;&#x7684;&#xFF09;&#x3002;&#x8FD9;&#x6B3E;&#x6587;&#x672C;&#x7F16;&#x8F91;&#x5668;&#x6709;3&#x5927;&#x7279;&#x70B9;&#xFF1A;  </p>
+                <p>&#x4EE5;&#x524D;&#x6839;&#x672C;&#x6CA1;&#x63A5;&#x89E6;&#x8FC7;Linux&#x64CD;&#x4F5C;&#x7CFB;&#x7EDF;&#xFF0C;&#x7C7B;&#x751F;&#x7CFB;&#x7EDF;&#x5C31;&#x73A9;&#x8FC7;IOS&#xFF0C;&#x6240;&#x4EE5;&#x4ECA;&#x5929;&#x603B;&#x7ED3;&#x7684;Ubuntu&#x7684;&#x547D;&#x4EE4;&#x884C;&#xFF0C;&#x4E5F;&#x662F;&#x6211;&#x4ECE;&#x96F6;&#x5B66;&#x8D77;&#x7684;&#x5C0F;&#x7ED3;&#x3002;</p>
+<p>&#x56E0;&#x4E3A;&#x5DE5;&#x4F5C;&#x7684;&#x5173;&#x7CFB;&#xFF0C;&#x6211;&#x5DE5;&#x4F5C;&#x7684;&#x4E00;&#x5E74;&#x534A;&#x4E2D;&#x57FA;&#x672C;&#x6CA1;&#x6572;&#x6253;&#x8FC7;&#x4EC0;&#x4E48;&#x4EE3;&#x7801;&#xFF0C;&#x6BCF;&#x5929;&#x90FD;&#x662F;&#x4EA7;&#x54C1;&#x7684;&#x5DE5;&#x4F5C;&#xFF0C;&#x9700;&#x6C42;&#x8C03;&#x7814;&#x3001;&#x51C6;&#x5907;&#x8DEF;&#x6F14;&#x6750;&#x6599;&#x3001;&#x8BBE;&#x8BA1;&#x539F;&#x578B;&#x3001;&#x5199;PRD&#x6587;&#x6863;&#x7B49;&#x7B49;&#x3002;&#x5176;&#x5B9E;&#x5728;&#x8FD9;&#x4E9B;&#x8FC7;&#x7A0B;&#x4E2D;&#xFF0C;&#x6211;&#x4E5F;&#x5B66;&#x5230;&#x4E0D;&#x5C11;&#x4E1C;&#x897F;&#xFF0C;&#x4F46;&#x603B;&#x89C9;&#x5F97;&#x5C11;&#x4E86;&#x4E00;&#x70B9;&#x4EC0;&#x4E48;&#x3002;&#x76F4;&#x5230;&#x6709;&#x4E00;&#x5929;&#x6211;&#x5728;<a href="http://www.pmcaff.com/" target="_blank" rel="external">PMCAFF</a>&#x4E0A;&#x770B;&#x5230;&#x4E00;&#x6BB5;&#x6587;&#x5B57;&#xFF1A;<strong><em>&#x201C;&#x61C2;&#x4E0D;&#x61C2;&#x6280;&#x672F;&#x5E76;&#x4E0D;&#x662F;&#x8BC4;&#x4EF7;&#x4E00;&#x4E2A;&#x4EA7;&#x54C1;&#x7ECF;&#x7406;&#x4F18;&#x52A3;&#x7684;&#x6807;&#x51C6;&#xFF0C;&#x4F46;&#x662F;&#x591A;&#x4E00;&#x9879;&#x6280;&#x80FD;&#x672A;&#x5C1D;&#x4E0D;&#x662F;&#x4E00;&#x4EF6;&#x597D;&#x4E8B;&#x201D;&#x3002;</em></strong>&#x6253;&#x52A8;&#x6211;&#x7684;&#x4E0D;&#x662F;&#x8FD9;&#x6BB5;&#x6587;&#x5B57;&#x6709;&#x591A;&#x4E48;&#x7684;&#x611F;&#x67D3;&#x529B;&#x3002;</p>
+<p>&#x800C;&#x662F;&#x5B83;&#x63D0;&#x9192;&#x4E86;&#x6211;&#xFF1A;<strong>&#x4E0D;&#x8981;&#x6B62;&#x6B65;&#xFF0C;&#x7EE7;&#x7EED;&#x5411;&#x524D;&#x3002;</strong></p>
+<h2 id="&#x5F00;&#x59CB;&#x6211;&#x7684;&#x81EA;&#x5B66;&#x65E5;&#x5FD7;&#xFF1A;vim&#x5B89;&#x88C5;&#x53CA;&#x5E38;&#x89C1;&#x547D;&#x4EE4;&#x884C;"><a href="#&#x5F00;&#x59CB;&#x6211;&#x7684;&#x81EA;&#x5B66;&#x65E5;&#x5FD7;&#xFF1A;vim&#x5B89;&#x88C5;&#x53CA;&#x5E38;&#x89C1;&#x547D;&#x4EE4;&#x884C;" class="headerlink" title="&#x5F00;&#x59CB;&#x6211;&#x7684;&#x81EA;&#x5B66;&#x65E5;&#x5FD7;&#xFF1A;vim&#x5B89;&#x88C5;&#x53CA;&#x5E38;&#x89C1;&#x547D;&#x4EE4;&#x884C;"></a>&#x5F00;&#x59CB;&#x6211;&#x7684;&#x81EA;&#x5B66;&#x65E5;&#x5FD7;&#xFF1A;vim&#x5B89;&#x88C5;&#x53CA;&#x5E38;&#x89C1;&#x547D;&#x4EE4;&#x884C;</h2><p>&#x5176;&#x5B9E;&#x6211;&#x4E00;&#x5F00;&#x59CB;&#x81EA;&#x5B66;&#x7684;&#x662F;Python&#xFF0C;&#x60F3;&#x5206;&#x4EAB;&#x7684;&#x4E5F;&#x662F;&#x5B66;&#x4E60;Python&#x8FC7;&#x7A0B;&#x4E2D;&#x7684;&#x5B66;&#x4E60;&#x7B14;&#x8BB0;&#xFF0C;&#x4F46;&#x662F;&#x88AB;&#x4E00;&#x4E2A;&#x5927;&#x795E;&#x5F15;&#x9886;&#x5230;&#x4E86;&#x5947;&#x602A;&#x7684;&#x9886;&#x57DF;&#xFF0C;&#x6240;&#x4EE5;&#x5F00;&#x59CB;&#x5E76;&#x53D1;&#x5F0F;&#x7684;&#x5B66;&#x4E60;&#xFF0C;&#x53CD;&#x6B63;&#x90FD;&#x6709;&#x4E92;&#x76F8;&#x4FC3;&#x8FDB;&#x7684;&#x5730;&#x65B9;&#x3002;</p>
+<h3 id="&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;"><a href="#&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;" class="headerlink" title="&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;"></a>&#x9996;&#x5148;&#x5B89;&#x88C5;Ubuntu&#x7CFB;&#x7EDF;</h3><p>&#x7248;&#x672C;&#xFF1A;Ubuntu14.04<br>&#x6211;&#x77E5;&#x9053;&#x73B0;&#x5728;&#x5927;&#x5BB6;&#x57FA;&#x672C;&#x90FD;&#x662F;WIN&#xFF0F;IOS&#x7CFB;&#x7EDF;&#xFF0C;&#x6240;&#x4EE5;&#x5148;&#x88C5;Ubuntu&#x3002;&#x4F46;&#x662F;&#xFF0C;&#x6211;&#x9009;&#x62E9;&#x76F4;&#x63A5;&#x8DF3;&#x8FC7;&#x8FD9;&#x6B65;&#x9AA4;&#xB7;&#xB7;&#xB7;&#x60F3;&#x5206;&#x4EAB;&#x7684;&#x5C0F;&#x4F19;&#x4F34;&#x76F4;&#x63A5;&#x767E;&#x5EA6;&#x1F636;</p>
+<h3 id="&#x5B89;&#x88C5;vim"><a href="#&#x5B89;&#x88C5;vim" class="headerlink" title="&#x5B89;&#x88C5;vim"></a>&#x5B89;&#x88C5;vim</h3><p>&#x7248;&#x672C;&#xFF1A;7.4.52<br>&#x6211;&#x9009;&#x62E9;&#x4F7F;&#x7528;vim&#x4F5C;&#x4E3A;&#x6211;&#x7684;&#x4E3B;&#x8981;&#x6587;&#x672C;&#x7F16;&#x8F91;&#x5668;&#xFF08;&#x5927;&#x795E;&#x63A8;&#x8350;&#xFF0C;&#x4E0D;&#x8FC7;&#x7528;&#x4E0A;&#x624B;&#x4E86;&#xFF0C;&#x7684;&#x786E;&#x633A;&#x68D2;&#x7684;&#xFF09;&#x3002;&#x8FD9;&#x6B3E;&#x6587;&#x672C;&#x7F16;&#x8F91;&#x5668;&#x6709;3&#x5927;&#x7279;&#x70B9;&#xFF1A;  </p>
 <ul>
 <li>&#x4E0D;&#x8BBE;&#x7F6E;&#x4E00;&#x4E0B;&#xFF0C;&#x771F;&#x7684;&#x4E0D;&#x80FD;&#x7528;&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;  </li>
 <li>&#x8BBE;&#x7F6E;&#x5B8C;&#x6210;&#x540E;&#xFF0C;&#x77AC;&#x95F4;&#x53D8;&#x8EAB;&#x4E00;&#x6B3E;&#x8D85;&#x8F7B;&#x5DE7;&#x5F3A;&#x5927;&#x7684;IDE  </li>
 <li>&#x53EF;&#x73A9;&#x6027;&#x8F83;&#x9AD8;&#xFF0C;&#x5B66;vim&#xFF0C;&#x6211;&#x5B66;&#x4E86;&#x597D;&#x4E45;&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;&#xB7;  </li>
 </ul>
-<p>&#x9996;&#x5148;&#x4F7F;&#x7528;Ubuntu&#x7684;&#x7EC8;&#x7AEF;&#x8FDB;&#x884C;vim&#x7684;&#x5B89;&#x88C5;&#xFF1B;</p>
+<p>&#x9996;&#x5148;&#x4F7F;&#x7528;Ubuntu&#x7684;&#x7EC8;&#x7AEF;&#x8FDB;&#x884C;vim&#x7684;&#x5B89;&#x88C5;&#x3002;<strong>&#x901A;&#x8FC7;&#x5B89;&#x88C5;vim&#xFF0C;&#x987A;&#x4FBF;&#x5206;&#x4EAB;&#x4E00;&#x4E0B;&#x5E38;&#x89C1;&#x7684;&#x547D;&#x4EE4;&#x884C;&#x8F93;&#x5165;&#x3002;</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install vim</div></pre></td></tr></table></figure>
-<p><img src="/2016/11/24/&#x5305;&#x5B50;&#x81EA;&#x5B66;&#x65E5;&#x5FD7;&#xFF08;&#x4E00;&#xFF09;Ubuntu&#x547D;&#x4EE4;&#x884C;/&#x5B89;&#x88C5;VIM.png" alt=""><br><strong>sudo</strong>&#xFF1A;&#x6700;&#x9AD8;&#x6743;&#x9650;&#xFF0C;&#x4E00;&#x822C;&#x901A;&#x8FC7;&#x7EC8;&#x7AEF;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#xFF0C;&#x90FD;&#x662F;&#x9700;&#x8981;&#x6253;&#x4E0A;&#x8FD9;&#x884C;&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x7533;&#x660E;&#x6700;&#x9AD8;&#x6743;&#x9650;&#x3002;<br><strong>apt-get</strong>&#xFF1A;Advanced Package Tool &#x8FDB;&#x884C;deb&#x5305;&#x7684;&#x7BA1;&#x7406;&#x64CD;&#x4F5C;&#x3002;<br><strong>install vim</strong>&#xFF1A;&#x8FD9;&#x4E2A;&#x4E0D;&#x7528;&#x8BF4;&#x4E86;&#x5427;&#xFF0C;install &#x662F; &#x5B89;&#x88C5;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;vim&#x662F;&#x76EE;&#x6807;&#x8F6F;&#x4EF6;&#x3002;<br><strong><em>&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;</em></strong><br><strong>update</strong>&#xFF1A;&#x66F4;&#x65B0;&#x8F6F;&#x4EF6;&#x5305;&#x7248;&#x672C;&#xFF1B;<br><strong>install</strong>&#xFF1A;&#x5B89;&#x88C5;&#xFF1B;<br><strong>remove</strong>&#xFF1A;&#x5378;&#x8F7D;+&#x4FDD;&#x5B58;&#x914D;&#x7F6E;&#x6587;&#x6863;&#xFF1B;<br><strong>remove &#x2013;purge</strong>&#xFF1A;&#x5378;&#x8F7D;+&#x5220;&#x9664;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1B;<br><strong>autoremove packagename</strong>&#xFF1A;&#x5220;&#x9664;&#x548C;&#x76F8;&#x5173;&#x4F9D;&#x8D56;&#x5305;&#xFF1B;<br><strong>autoremove &#x2013;purge packagename</strong>&#xFF1A;&#x5F7B;&#x5E95;&#x5220;&#x9664;&#xFF1B;</p>
+<p><img src="/2016/11/24/&#x5305;&#x5B50;&#x81EA;&#x5B66;&#x65E5;&#x5FD7;&#xFF08;&#x4E00;&#xFF09;vim&#x5B89;&#x88C5;&#x53CA;&#x5E38;&#x89C1;&#x547D;&#x4EE4;&#x884C;/&#x5305;&#x5B50;&#x81EA;&#x5B66;&#x65E5;&#x5FD7;&#xFF08;&#x4E00;&#xFF09;Ubuntu&#x547D;&#x4EE4;&#x884C;/&#x5B89;&#x88C5;VIM.png" alt=""><br><strong>sudo</strong>&#xFF1A;&#x6700;&#x9AD8;&#x6743;&#x9650;&#xFF0C;&#x4E00;&#x822C;&#x901A;&#x8FC7;&#x7EC8;&#x7AEF;&#x5B89;&#x88C5;&#x8F6F;&#x4EF6;&#xFF0C;&#x90FD;&#x662F;&#x9700;&#x8981;&#x6253;&#x4E0A;&#x8FD9;&#x884C;&#x547D;&#x4EE4;&#x8FDB;&#x884C;&#x7533;&#x660E;&#x6700;&#x9AD8;&#x6743;&#x9650;&#x3002;<br><strong>apt-get</strong>&#xFF1A;Advanced Package Tool &#x8FDB;&#x884C;deb&#x5305;&#x7684;&#x7BA1;&#x7406;&#x64CD;&#x4F5C;&#x3002;<br><strong>install vim</strong>&#xFF1A;&#x8FD9;&#x4E2A;&#x4E0D;&#x7528;&#x8BF4;&#x4E86;&#x5427;&#xFF0C;install &#x662F; &#x5B89;&#x88C5;&#x7684;&#x65B9;&#x6CD5;&#xFF0C;vim&#x662F;&#x76EE;&#x6807;&#x8F6F;&#x4EF6;&#x3002;  </p>
+<h3 id="&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;"><a href="#&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;" class="headerlink" title="&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;"></a>&#x5E38;&#x89C1;&#x7684;&#x64CD;&#x4F5C;</h3><p><strong>update</strong>&#xFF1A;&#x66F4;&#x65B0;&#x8F6F;&#x4EF6;&#x5305;&#x7248;&#x672C;&#xFF1B;<br><strong>install</strong>&#xFF1A;&#x5B89;&#x88C5;&#xFF1B;<br><strong>remove</strong>&#xFF1A;&#x5378;&#x8F7D;+&#x4FDD;&#x5B58;&#x914D;&#x7F6E;&#x6587;&#x6863;&#xFF1B;<br><strong>remove &#x2013;purge</strong>&#xFF1A;&#x5378;&#x8F7D;+&#x5220;&#x9664;&#x914D;&#x7F6E;&#x6587;&#x4EF6;&#xFF1B;<br><strong>autoremove packagename</strong>&#xFF1A;&#x5220;&#x9664;&#x548C;&#x76F8;&#x5173;&#x4F9D;&#x8D56;&#x5305;&#xFF1B;<br><strong>autoremove &#x2013;purge packagename</strong>&#xFF1A;&#x5F7B;&#x5E95;&#x5220;&#x9664;&#xFF1B;</p>
 <blockquote>
 <p>&#x5173;&#x8054;&#x77E5;&#x8BC6;&#x70B9;1&#xFF1A;<strong>dpkg &#x2013;force-all &#x2013;purge packagename</strong>&#xFF1A;&#x5F3A;&#x5236;&#x5220;&#x9664;&#xFF08;&#x5982;&#x5728;win&#x4E0A;&#x5220;&#x9664;&#x91D1;&#x5C71;&#x6BD2;&#x9738;&#xFF0C;&#x5F3A;&#x5236;&#x5220;&#x9664;&#xFF0C;&#x53EF;&#x80FD;&#x4F1A;&#x6709;&#x98CE;&#x9669;&#x3001;&#x614E;&#x7528;&#xFF09;&#x3002;  </p>
 </blockquote>
@@ -224,9 +228,9 @@
                 </style>
                 <div class="ds-share"
                     style="text-align: right"
-                    data-thread-key="2016/11/24/包子自学日志（一）Ubuntu命令行/"
-                    data-title="包子自学日志（一）Ubuntu命令行"
-                    data-url="http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行/"
+                    data-thread-key="2016/11/24/包子自学日志（一）vim安装及常见命令行/"
+                    data-title="包子自学日志（一）vim安装及常见命令行"
+                    data-url="http://icobweb.com/2016/11/24/包子自学日志（一）vim安装及常见命令行/"
                     data-images=""
                     data-content="&#x4EE5;&#x524D;&#x6839;&#x672C;&#x6CA1;&#x63A5... | Keith的博客 | Keith&#39;s Blog " >
                     <div class="ds-share-inline">
@@ -246,6 +250,10 @@
 
                 <ul class="pager">
                     
+                        <li class="previous">
+                            <a href="/2016/11/25/包子自学日志（二）配置及使用vim/" data-toggle="tooltip" data-placement="top" title="包子自学日志（二）配置及使用vim">&larr; Previous Post</a>
+                        </li>
+                    
                     
                 </ul>
 
@@ -253,9 +261,9 @@
                 <!-- 多说评论框 start -->
                 <div class="comment">
                     <div class="ds-thread"
-                        data-thread-key="2016/11/24/包子自学日志（一）Ubuntu命令行/"
-                        data-title="包子自学日志（一）Ubuntu命令行"
-                        data-url="http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行/" >
+                        data-thread-key="2016/11/24/包子自学日志（一）vim安装及常见命令行/"
+                        data-title="包子自学日志（一）vim安装及常见命令行"
+                        data-url="http://icobweb.com/2016/11/24/包子自学日志（一）vim安装及常见命令行/" >
                     </div>
                 </div>
                 <!-- 多说评论框 end -->
@@ -287,9 +295,11 @@
                     <h5><a href="/tags/">FEATURED TAGS</a></h5>
                     <div class="tags">
                        
+                          <a class="tag" href="/tags/#学习日志" title="学习日志">学习日志</a>
+                        
                           <a class="tag" href="/tags/#Ubuntu" title="Ubuntu">Ubuntu</a>
                         
-                          <a class="tag" href="/tags/#学习日志" title="学习日志">学习日志</a>
+                          <a class="tag" href="/tags/#vim" title="vim">vim</a>
                         
                     </div>
                 </section>
@@ -341,8 +351,8 @@
 <script type="text/javascript">
     /* * * CONFIGURATION VARIABLES * * */
     var disqus_shortname = "keithran23";
-    var disqus_identifier = "http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行/";
-    var disqus_url = "http://icobweb.com/2016/11/24/包子自学日志（一）Ubuntu命令行/";
+    var disqus_identifier = "http://icobweb.com/2016/11/24/包子自学日志（一）vim安装及常见命令行/";
+    var disqus_url = "http://icobweb.com/2016/11/24/包子自学日志（一）vim安装及常见命令行/";
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;

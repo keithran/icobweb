@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Head tag -->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+          GitHub搭建博客笔记（一）Jekyll建站 - Keith的博客 | Keith&#39;s Blog
+        
+    </title>
+
+    <link rel="canonical" href="http://icobweb.com/2016/11/28/GitHub搭建博客笔记（一）Jekyll建站/">
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/hux-blog.min.css">
+
+    <!-- Pygments Highlight CSS -->
+    <link rel="stylesheet" href="/css/highlight.css">
+
+    <!-- Custom Fonts -->
+    <!-- <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet" type="text/css"> -->
+    <!-- Hux change font-awesome CDN to qiniu -->
+    <link href="http://cdn.staticfile.org/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+
+    <!-- Hux Delete, sad but pending in China
+    <link href='http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/
+    css'>
+    -->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+
+<!-- hack iOS CSS :active style -->
+<body ontouchstart="">
+
+    <!-- Navigation -->
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">Keith&#39;s Blog</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <!-- Known Issue, found by Hux:
+            <nav>'s height woule be hold on by its content.
+            so, when navbar scale out, the <nav> will cover tags.
+            also mask any touch event of tags, unfortunately.
+        -->
+        <div id="huxblog_navbar">
+            <div class="navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Home</a>
+                    </li>
+
+                    
+
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/about/">About</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/archives/">Archives</a>
+                        </li>
+                        
+                    
+
+                        
+                        <li>
+                            <a href="/tags/">Tags</a>
+                        </li>
+                        
+                    
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>
+<script>
+    // Drop Bootstarp low-performance Navbar
+    // Use customize navbar with high-quality material design animation
+    // in high-perf jank-free CSS3 implementation
+    var $body   = document.body;
+    var $toggle = document.querySelector('.navbar-toggle');
+    var $navbar = document.querySelector('#huxblog_navbar');
+    var $collapse = document.querySelector('.navbar-collapse');
+
+    $toggle.addEventListener('click', handleMagic)
+    function handleMagic(e){
+        if ($navbar.className.indexOf('in') > 0) {
+        // CLOSE
+            $navbar.className = " ";
+            // wait until animation end.
+            setTimeout(function(){
+                // prevent frequently toggle
+                if($navbar.className.indexOf('in') < 0) {
+                    $collapse.style.height = "0px"
+                }
+            },400)
+        }else{
+        // OPEN
+            $collapse.style.height = "auto"
+            $navbar.className += " in";
+        }
+    }
+</script>
+
+
+    <!-- Main Content -->
+    
+<!-- Image to hack wechat -->
+<!-- <img src="http://icobweb.com/img/icon_wechat.png" width="0" height="0"> -->
+<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
+
+<!-- Post Header -->
+<style type="text/css">
+    header.intro-header{
+        background-image: url('/img/home-bg.jpg')
+    }
+</style>
+<header class="intro-header" >
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="post-heading">
+                    <div class="tags">
+                        
+                          <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                        
+                          <a class="tag" href="/tags/#Jekyll" title="Jekyll">Jekyll</a>
+                        
+                          <a class="tag" href="/tags/#GitHub" title="GitHub">GitHub</a>
+                        
+                    </div>
+                    <h1>GitHub搭建博客笔记（一）Jekyll建站</h1>
+                    <h2 class="subheading">Building your blog on the GitHub - by Jekyll</h2>
+                    <span class="meta">
+                        Posted by Keith Ran on
+                        2016-11-28
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<!-- Post Content -->
+<article>
+    <div class="container">
+        <div class="row">
+
+    <!-- Post Container -->
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                post-container">
+
+                <h2 id="&#x5728;GitHub&#x4E0B;&#x642D;&#x5EFA;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;"><a href="#&#x5728;GitHub&#x4E0B;&#x642D;&#x5EFA;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;" class="headerlink" title="&#x5728;GitHub&#x4E0B;&#x642D;&#x5EFA;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;"></a>&#x5728;GitHub&#x4E0B;&#x642D;&#x5EFA;&#x5C5E;&#x4E8E;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;</h2><p>&#x4E00;&#x822C;&#x5728;GitHub&#x4E0B;&#x5EFA;&#x535A;&#x4E00;&#x822C;&#x90FD;&#x91C7;&#x7528;&#x4EE5;&#x4E0B;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF0C;&#x5176;&#x4ED6;&#x7684;&#x65B9;&#x5F0F;&#x4E5F;&#x6709;&#xFF0C;&#x4F46;&#x662F;&#x6211;&#x6CA1;&#x600E;&#x4E48;&#x5173;&#x6CE8;&#x5230;&#xFF0C;&#x6709;&#x7684;&#x670B;&#x53CB;&#x53EF;&#x4EE5;&#x7559;&#x8A00;&#x5206;&#x4EAB;&#x4E00;&#x4E0B;&#x3002;</p>
+<ul>
+<li>&#x5229;&#x7528;&#x5EFA;&#x7AD9;&#x7684;&#x5F62;&#x5F0F;&#x8FDB;&#x884C;&#x535A;&#x5BA2;&#x5EFA;&#x7ACB;&#xFF08;&#x6211;&#x91C7;&#x53D6;&#x7684;&#x662F;&#x8FD9;&#x4E00;&#x79CD;&#xFF09;<a href="http://www.pchou.info/ssgithubPage/2013-01-03-build-github-blog-page-01.html" target="_blank" rel="external">P_Chou Tech Space</a></li>
+<li>&#x5229;&#x7528;&#x9759;&#x6001;&#x754C;&#x9762;&#x8FDB;&#x884C;&#x5EFA;&#x7ACB;&#xFF08;&#x6BD4;&#x8F83;&#x7B80;&#x5355;&amp;&#x4FBF;&#x6377;&#xFF09;<a href="http://isnowfy.github.io/about-simple-cn.html" target="_blank" rel="external">isnowfy</a></li>
+</ul>
+<p>&#x5728;&#x642D;&#x5EFA;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;&#x65F6;&#xFF0C;&#x4E0D;&#x60F3;&#x5355;&#x7EAF;&#x7684;&#x4F7F;&#x7528;&#x9759;&#x6001;&#x7684;&#x754C;&#x9762;&#x7684;&#x5F62;&#x5F0F;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#xFF0C;&#x5E76;&#x4E14;&#x60F3;&#x4FDD;&#x8BC1;&#x5B9E;&#x65F6;&#x66F4;&#x65B0;&#x4E0E;&#x4E00;&#x4E9B;&#x6587;&#x4EF6;&#x5904;&#x7406;&#x4E0A;&#x7684;&#x7BA1;&#x7406;&#xFF0C;&#x6240;&#x4EE5;&#x5F00;&#x59CB;&#x4F7F;&#x7528;Git&#x6765;&#x8FDB;&#x884C;&#x7BA1;&#x7406;&#xFF0C;&#x51CF;&#x5C11;&#x4EBA;&#x5DE5;&#x3002;</p>
+<h3 id="GitHub&#x9700;&#x8981;&#x638C;&#x63E1;&#xFF1A;node&#x4E0E;git&#x7684;&#x4F7F;&#x7528;"><a href="#GitHub&#x9700;&#x8981;&#x638C;&#x63E1;&#xFF1A;node&#x4E0E;git&#x7684;&#x4F7F;&#x7528;" class="headerlink" title="GitHub&#x9700;&#x8981;&#x638C;&#x63E1;&#xFF1A;node&#x4E0E;git&#x7684;&#x4F7F;&#x7528;"></a>GitHub&#x9700;&#x8981;&#x638C;&#x63E1;&#xFF1A;node&#x4E0E;git&#x7684;&#x4F7F;&#x7528;</h3><p>git&#x7684;&#x7BA1;&#x7406;&#x539F;&#x7406;&#xFF0C;&#x8BB2;&#x5B9E;&#x8BDD;&#x6211;&#x4E5F;&#x4E0D;&#x592A;&#x61C2;&#xFF0C;&#x4E5F;&#x662F;&#x6309;&#x7167;&#x641C;&#x7D22;&#x5230;&#x7684;&#x4FE1;&#x606F;&#x4E00;&#x70B9;&#x70B9;&#x7684;&#x5B66;&#x3002;&#x6309;&#x7167;&#x73B0;&#x5728;&#x7684;&#x7406;&#x89E3;&#x6765;&#x8BF4;&#xFF0C;&#x5C31;&#x662F;&#x5728;&#x672C;&#x5730;&#x505A;&#x4E86;&#x4E00;&#x4E2A;&#x7248;&#x672C;&#x7684;&#x53D1;&#x5E03;&#x5668;&#x4E0E;&#x5E95;&#x5C42;&#x4ED3;&#x5E93;&#xFF0C;&#x7136;&#x540E;&#x8FDE;&#x63A5;&#x4E91;&#x7AEF;&#x8FDB;&#x884C;&#x6570;&#x636E;&#x4EA4;&#x4E92;&#x7684;&#x4E00;&#x79CD;&#x65B9;&#x6CD5;&#x3002;</p>
+<p>#&#x6682;&#x65F6;&#x8FD9;&#x4E48;&#x7406;&#x89E3;&#xFF0C;&#x6709;&#x5927;&#x725B;&#x4E00;&#x5B9A;&#x8981;&#x5E2E;&#x6211;&#x4F50;&#x8BC1;&#xFF01;</p>
+<h4 id="&#x5B89;&#x88C5;node&#x4E0E;git-&#x4F7F;&#x7528;&#x7EC8;&#x7AEF;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x5373;&#x53EF;"><a href="#&#x5B89;&#x88C5;node&#x4E0E;git-&#x4F7F;&#x7528;&#x7EC8;&#x7AEF;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x5373;&#x53EF;" class="headerlink" title="&#x5B89;&#x88C5;node&#x4E0E;git,&#x4F7F;&#x7528;&#x7EC8;&#x7AEF;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x5373;&#x53EF;"></a>&#x5B89;&#x88C5;node&#x4E0E;git,&#x4F7F;&#x7528;&#x7EC8;&#x7AEF;&#x8FDB;&#x884C;&#x5B89;&#x88C5;&#x5373;&#x53EF;</h4><figure class="highlight crmsh"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ sudo apt-get install <span class="keyword">node</span>  </div><div class="line"><span class="title">$</span> sudo apt-get install git</div></pre></td></tr></table></figure>
+<h3 id="&#x914D;&#x7F6E;git"><a href="#&#x914D;&#x7F6E;git" class="headerlink" title="&#x914D;&#x7F6E;git"></a>&#x914D;&#x7F6E;git</h3><h4 id="1-Git&#x521D;&#x59CB;&#x8BBE;&#x7F6E;"><a href="#1-Git&#x521D;&#x59CB;&#x8BBE;&#x7F6E;" class="headerlink" title="1. Git&#x521D;&#x59CB;&#x8BBE;&#x7F6E;"></a>1. Git&#x521D;&#x59CB;&#x8BBE;&#x7F6E;</h4><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user<span class="selector-class">.name</span> <span class="string">&quot;YOUR NAME&quot;</span>  </div><div class="line">$ git config --global user<span class="selector-class">.eamil</span> <span class="string">&quot;YOUR EMAILL&quot;</span></div></pre></td></tr></table></figure>
+<p>*&#x8FD9;&#x6837;&#x8BBE;&#x7F6E;&#x4E4B;&#x540E;&#xFF0C;&#x4F60;&#x5728;&#x521B;&#x5EFA;&#x65B0;&#x9879;&#x76EE;&#x7684;&#x65F6;&#x5019;&#xFF0C;&#x90FD;&#x4F1A;&#x81EA;&#x52A8;&#x5E26;&#x4E0A;&#x4F60;&#x7684;&#x59D3;&#x540D;&#x4E0E;&#x90AE;&#x7BB1;&#x3002;</p>
+<h4 id="2-&#x521D;&#x59CB;&#x5316;Git&#x4ED3;&#x5E93;"><a href="#2-&#x521D;&#x59CB;&#x5316;Git&#x4ED3;&#x5E93;" class="headerlink" title="2. &#x521D;&#x59CB;&#x5316;Git&#x4ED3;&#x5E93;"></a>2. &#x521D;&#x59CB;&#x5316;Git&#x4ED3;&#x5E93;</h4><figure class="highlight gams"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="symbol">$</span> cd ~/work&#xFF08;&#x8FD9;&#x91CC;&#x7684;work&#x5373;&#x4E3A;&#x4F60;&#x521B;&#x5EFA;&#x7684;&#x9879;&#x76EE;&#x6587;&#x4EF6;&#x5939;&#x540D;&#x79F0;&#xFF09;</div><div class="line"><span class="symbol">$</span> git init</div></pre></td></tr></table></figure>
+<p>&#x6B64;&#x540E;&#x5229;&#x7528;&#x7EC8;&#x7AEF;&#x4F60;&#x53EF;&#x4EE5;&#x67E5;&#x770B;&#x5230;&#x5728;work&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#x4E0B;&#x6709;&#x4E00;&#x4E2A;&#x9690;&#x85CF;&#x7684;&#x76EE;&#x5F55;.git&#xFF0C;&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x5C31;&#x662F;Git&#x7684;&#x4ED3;&#x5E93;&#x3002;&#x8FD9;&#x4E2A;&#x65F6;&#x5019;work&#x8FD9;&#x4E2A;&#x6587;&#x4EF6;&#x5939;&#xFF0C;&#x53EF;&#x4EE5;&#x53EB;&#x505A;&#x5DE5;&#x4F5C;&#x6811;/&#x9879;&#x76EE;&#x6E90;&#x3002;</p>
+<h4 id="3-&#x751F;&#x4EA7;&#x79D8;&#x94A5;"><a href="#3-&#x751F;&#x4EA7;&#x79D8;&#x94A5;" class="headerlink" title="3. &#x751F;&#x4EA7;&#x79D8;&#x94A5;"></a>3. &#x751F;&#x4EA7;&#x79D8;&#x94A5;</h4><p>&#x8FD9;&#x4E2A;&#x4E1C;&#x897F;&#x5C31;&#x662F;&#x8FDE;&#x63A5;&#x672C;&#x5730;&#x4E0E;github&#x7684;&#x5A92;&#x4ECB;&#xFF0C;&#x9700;&#x8981;&#x901A;&#x8FC7;&#x672C;&#x5730;&#x751F;&#x4EA7;&#x4E00;&#x4E2A;&#x552F;&#x4E00;&#x7684;&#x79D8;&#x94A5;&#xFF0C;&#x7136;&#x540E;&#x5728;github&#x4E0A;&#x7ED1;&#x5B9A;&#x3002;<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ cd ~/<span class="selector-class">.ssh</span> &#x68C0;&#x67E5;&#x672C;&#x5730;&#x7684;ssh&#x79D8;&#x94A5;</div></pre></td></tr></table></figure></p>
+<p>&#x5982;&#x679C;&#x68C0;&#x6D4B;&#x51FA;&#x6CA1;&#x6709;&#x79D8;&#x94A5;&#x7684;&#x8BDD;&#xFF0C;&#x90A3;&#x8BF4;&#x660E;&#x662F;&#x7B2C;&#x4E00;&#x6B21;&#x4F7F;&#x7528;git&#xFF0C;&#x5C31;&#x9700;&#x8981;&#x751F;&#x4EA7;&#x65B0;&#x7684;ssh&#x79D8;&#x94A5;&#x3002;<br><figure class="highlight smalltalk"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="string">$ </span>ssh-keygen -t rsa -<span class="type">C</span> <span class="comment">&quot;your email address&quot;</span></div></pre></td></tr></table></figure></p>
+<p>&#x518D;&#x8F93;&#x5165;&#x81EA;&#x5B9A;&#x4E49;&#x7684;&#x5BC6;&#x7801;&#xFF1B;<br>&#x518D;&#x6B21;&#x8F93;&#x5165;&#x76F8;&#x540C;&#x5BC6;&#x7801;&#xFF1B;<br>&#x751F;&#x4EA7;&#x6210;&#x529F;&#x3002;<br><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-1.png" alt="&#x56FE;-1"></p>
+<blockquote>
+<p><a href="http://blog.lizhigang.net/archives/249" target="_blank" rel="external">&#x70B9;&#x51FB;&#x67E5;&#x770B;SSH&#x7684;&#x8BF4;&#x660E;</a></p>
+</blockquote>
+<h4 id="4-&#x7ED1;&#x5B9A;github"><a href="#4-&#x7ED1;&#x5B9A;github" class="headerlink" title="4.&#x7ED1;&#x5B9A;github"></a>4.&#x7ED1;&#x5B9A;github</h4><p><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-2.png" alt="&#x56FE;-2"></p>
+<p>Title&#x6309;&#x7167;&#x4F60;&#x81EA;&#x5DF1;&#x7684;&#x547D;&#x540D;&#x4E60;&#x60EF;&#x8FDB;&#x884C;&#x547D;&#x540D;&#x5373;&#x53EF;<br>Key&#x7684;&#x4F4D;&#x7F6E;&#x8F93;&#x5165;&#x5B8C;&#x6574;&#x7684;SSH Key&#xFF0C;&#x53EF;&#x901A;&#x8FC7;&#x7EC8;&#x7AEF;&#x6253;&#x5F00;&#x4E4B;&#x524D;&#x751F;&#x4EA7;&#x7684;id_rsa&#x6587;&#x4EF6;&#x8FDB;&#x884C;&#x67E5;&#x770B;&#x3002;</p>
+<p>&#x73B0;&#x5728;&#x5C31;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x672C;&#x5730;&#x901A;&#x8FC7;SSH&#x8FDB;&#x884C;&#x8FDC;&#x7A0B;&#x767B;&#x5F55;&#x4E0E;&#x8FDC;&#x7A0B;&#x6267;&#x884C;&#x547D;&#x4EE4;&#x3002;</p>
+<h4 id="5-&#x8BBE;&#x7F6E;&#x57DF;&#x540D;"><a href="#5-&#x8BBE;&#x7F6E;&#x57DF;&#x540D;" class="headerlink" title="5.&#x8BBE;&#x7F6E;&#x57DF;&#x540D;"></a>5.&#x8BBE;&#x7F6E;&#x57DF;&#x540D;</h4><p>&#x901A;&#x8FC7;&#x4EE5;&#x4E0A;&#x7684;&#x6B65;&#x9AA4;&#xFF0C;&#x4F60;&#x5DF2;&#x7ECF;&#x5B9E;&#x73B0;&#x4E86;&#x5728;github&#x4E0A;&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7684;&#x57FA;&#x7840;&#x6B65;&#x9AA4;&#x4E86;&#x3002;<br>&#x4F46;&#x662F;&#xFF01;&#x4EBA;&#x751F;&#x6CA1;&#x4E2A;&#x8FFD;&#x6C42;&#xFF0C;&#x8FD8;&#x6D3B;&#x4E2A;&#x5C41;&#x5440;&#x3002;&#x6211;&#x5C31;&#x60F3;&#x901A;&#x8FC7;&#x81EA;&#x5DF1;&#x72EC;&#x7279;&#x7684;&#x57DF;&#x540D;&#x8BBF;&#x95EE;&#x81EA;&#x5DF1;&#x7684;&#x535A;&#x5BA2;&#xFF01;</p>
+<p>&#x90A3;&#x5B9E;&#x73B0;&#x7684;&#x8FC7;&#x7A0B;&#x4E5F;&#x5F88;&#x7B80;&#x5355;&#xFF0C;&#x4E70;&#x4E2A;&#x4E2A;&#x6027;&#x7684;&#x57DF;&#x540D;&#x5148;&#x3002;<br>&#x6211;&#x5728;godaddy&#x4E0A;&#x4E70;&#x4E86;&#x4E00;&#x4E2A;&#x81EA;&#x5DF1;&#x559C;&#x6B22;&#x7684;&#x57DF;&#x540D;icobweb.com&#x3002;</p>
+<blockquote>
+<p><strong>i cobweb:</strong><br>&#x6211;&#x7684;&#x8718;&#x86DB;&#x7F51;&#xFF0C;&#x50CF;&#x8718;&#x86DB;&#x4E00;&#x4E0B;&#x7EC7;&#x7F51;&#x6355;&#x8776;&#xFF0C;&#x5728;&#x98CE;&#x96E8;&#x4E2D;&#x6355;&#x6349;&#x5230;&#x81EA;&#x5DF1;&#x7684;&#x773C;&#x4E2D;&#x7684;&#x72EC;&#x7279;&#xFF0C;&#x6211;&#x4F1A;&#x5C06;&#x6211;&#x5B66;&#x4E60;&#x7B14;&#x8BB0;&#x548C;&#x81EA;&#x5DF1;&#x7684;&#x8BBE;&#x8BA1;Demo&#x90FD;&#x5206;&#x4EAB;&#x5230;&#x8FD9;&#x4E2A;&#x5E73;&#x53F0;&#xFF0C;&#x5E0C;&#x671B;&#x80FD;&#x627E;&#x5230;&#x4E00;&#x7FA4;&#x5FD7;&#x540C;&#x9053;&#x5408;&#x7684;knowledge sharers&#x3002; </p>
+</blockquote>
+<p>&#x7BA1;&#x7406;&#x5668;&#xFF1A;<a href="www.dnspod.cn">DNSPOD</a><br>&#x9996;&#x5148;&#x5728;<a href="sg.godaddy.com">GoDaddy</a>&#x4E2D;&#xFF0C;&#x5C06;&#x57DF;&#x540D;&#x8F6C;&#x5165;&#x5230;<a href="www.dnspod.cn">DNSPOD</a>&#x7684;&#x4F3A;&#x670D;&#x5668;&#x4E0B;&#x3002;<br>&#xFF08;&#x5176;&#x5B9E;<a href="sg.godaddy.com">GoDaddy</a>&#x7684;&#x540E;&#x53F0;&#x7BA1;&#x7406;&#x4E5F;&#x53EF;&#x4EE5;&#x505A;DNS&#x7BA1;&#x7406;&#xFF0C;&#x4F46;&#x662F;&#x8BBF;&#x95EE;&#x901F;&#x5EA6;&#x5B9E;&#x5728;&#x4EE4;&#x6211;&#x6293;&#x72C2;&#xFF0C;&#x8FD8;&#x662F;&#x4EE3;&#x7406;&#x7BA1;&#x7406;&#x5427;&#xFF09;<br><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-3.png" alt="&#x56FE;-3"></p>
+<p>&#x518D;&#x901A;&#x8FC7;DNSpod&#x5C06;DNS&#x6307;&#x5411;&#x5230;github&#x7684;&#x670D;&#x52A1;&#x5668;&#x4E0A;<br><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-4.png" alt="&#x56FE;-4"></p>
+<p>&#x73B0;&#x5728;&#x5C31;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;icobweb.com&#x8FD9;&#x4E2A;&#x57DF;&#x540D;&#x8BBF;&#x95EE;&#x5230;&#x6211;&#x7684;github&#x535A;&#x5BA2;&#xFF0C;&#x4E5F;&#x53EF;&#x4EE5;&#x901A;&#x8FC7;keithran.github.io&#x8FD9;&#x4E2A;&#x57DF;&#x540D;&#x8FDB;&#x884C;&#x8BBF;&#x95EE;&#x3002;</p>
+<h3 id="&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x535A;&#x5BA2;"><a href="#&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x535A;&#x5BA2;" class="headerlink" title="&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x535A;&#x5BA2;"></a>&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x535A;&#x5BA2;</h3><p>&#x57FA;&#x7840;&#x7684;&#x5DE5;&#x4F5C;&#x90FD;&#x505A;&#x597D;&#x4E86;&#xFF0C;&#x73B0;&#x5728;&#x6211;&#x4EEC;&#x53EF;&#x4EE5;&#x5F00;&#x59CB;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x7B80;&#x5355;&#x7684;&#x535A;&#x5BA2;&#x9879;&#x76EE;&#x4E86;&#x3002;</p>
+<h4 id="1-&#x5728;&#x672C;&#x5730;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;&#x7684;&#x4ED3;&#x5E93;"><a href="#1-&#x5728;&#x672C;&#x5730;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;&#x7684;&#x4ED3;&#x5E93;" class="headerlink" title="1.&#x5728;&#x672C;&#x5730;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;&#x7684;&#x4ED3;&#x5E93;"></a>1.&#x5728;&#x672C;&#x5730;&#x642D;&#x5EFA;&#x4E00;&#x4E2A;&#x535A;&#x5BA2;&#x7684;&#x4ED3;&#x5E93;</h4><figure class="highlight arduino"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ <span class="built_in">mkdir</span> project_name</div></pre></td></tr></table></figure>
+<p>&#x65B0;&#x5EFA;&#x4E00;&#x4E2A;&#x76EE;&#x5F55;&#xFF08;&#x9879;&#x76EE;&#x540D;&#x79F0;&#x968F;&#x610F;&#xFF09;<br><figure class="highlight elixir"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="variable">$ </span>cd project_name</div><div class="line"><span class="variable">$ </span>git init</div></pre></td></tr></table></figure></p>
+<p>&#x8FD9;&#x4E2A;&#x76EE;&#x5F55;&#x4F5C;&#x4E3A;&#x9879;&#x76EE;&#x7684;&#x4E3B;&#x76EE;&#x5F55;&#xFF0C;&#x5BF9;&#x76EE;&#x5F55;&#x8FDB;&#x884C;git&#x521D;&#x59CB;&#x5316;&#x64CD;&#x4F5C;<br><figure class="highlight ada"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ git checkout <span class="comment">--orphan gh-pages</span></div></pre></td></tr></table></figure></p>
+<p>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x6CA1;&#x6709;&#x7236;&#x8282;&#x70B9;&#x7684;&#x5206;&#x652F; gh-pages&#x3002;&#x56E0;&#x4E3A;github&#x5DF2;&#x7ECF;&#x89C4;&#x5B9A;&#xFF0C;&#x53EA;&#x6709;&#x5728;&#x8FD9;&#x4E2A;&#x5206;&#x652F;&#x4E0B;&#x7684;&#x9875;&#x9762;&#x624D;&#x4F1A;&#x751F;&#x4EA7;&#x7F51;&#x9875;&#x6587;&#x4EF6;&#xFF0C;&#x4E4B;&#x540E;&#x7684;&#x6240;&#x4EE5;&#x52A8;&#x4F5C;&#x90FD;&#x662F;&#x5728;&#x8FD9;&#x4E2A;&#x5206;&#x652F;&#x4E0B;&#x5B8C;&#x6210;&#x7684;&#x3002;</p>
+<h4 id="2-&#x521B;&#x5EFA;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;"><a href="#2-&#x521B;&#x5EFA;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;" class="headerlink" title="2.&#x521B;&#x5EFA;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;"></a>2.&#x521B;&#x5EFA;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;</h4><p><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-5.png" alt="&#x56FE;-5"><br>_configh.yml&#xFF1A;jekyll&#x7684;&#x8BBE;&#x7F6E;&#x6587;&#x4EF6;&#x3002;<br>&#x5728;&#x6587;&#x4EF6;&#x4E2D;&#x586B;&#x5199;&#x5982;&#x4E0B;&#x5185;&#x5BB9;&#xFF1A;<br>baseurl: /jekyll_demo</p>
+<h5 id="index-html&#xFF1A;&#x9996;&#x9875;"><a href="#index-html&#xFF1A;&#x9996;&#x9875;" class="headerlink" title="index.html&#xFF1A;&#x9996;&#x9875;"></a>index.html&#xFF1A;&#x9996;&#x9875;</h5><p><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-6.png" alt="&#x56FE;-6"></p>
+<pre><code>&#x4F7F;&#x7528;&#x4E86;{% for post in site.posts %}&#xFF0C;&#x8868;&#x793A;&#x5BF9;&#x6240;&#x6709;&#x5E16;&#x5B50;&#x8FDB;&#x884C;&#x4E00;&#x4E2A;&#x904D;&#x5386;
+</code></pre><h5 id="layouts-default-html&#xFF1A;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#xFF0C;&#x6682;&#x65F6;&#x91C7;&#x7528;&#x4E00;&#x4E0B;&#x7684;&#x9ED8;&#x8BA4;&#x6A21;&#x677F;&#xFF1A;"><a href="#layouts-default-html&#xFF1A;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#xFF0C;&#x6682;&#x65F6;&#x91C7;&#x7528;&#x4E00;&#x4E0B;&#x7684;&#x9ED8;&#x8BA4;&#x6A21;&#x677F;&#xFF1A;" class="headerlink" title="_layouts/default.html&#xFF1A;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#xFF0C;&#x6682;&#x65F6;&#x91C7;&#x7528;&#x4E00;&#x4E0B;&#x7684;&#x9ED8;&#x8BA4;&#x6A21;&#x677F;&#xFF1A;"></a>_layouts/default.html&#xFF1A;&#x7528;&#x4E8E;&#x5B58;&#x653E;&#x6A21;&#x677F;&#x6587;&#x4EF6;&#xFF0C;&#x6682;&#x65F6;&#x91C7;&#x7528;&#x4E00;&#x4E0B;&#x7684;&#x9ED8;&#x8BA4;&#x6A21;&#x677F;&#xFF1A;</h5><p><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-7.png" alt="&#x56FE;-7"></p>
+<h5 id="post-2016-11-1-first-test-md&#xFF1A;&#x521B;&#x5EFA;&#x6587;&#x7AE0;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;html-md&#x4E24;&#x79CD;&#x683C;&#x5F0F;&#x7684;&#x6587;&#x6863;"><a href="#post-2016-11-1-first-test-md&#xFF1A;&#x521B;&#x5EFA;&#x6587;&#x7AE0;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;html-md&#x4E24;&#x79CD;&#x683C;&#x5F0F;&#x7684;&#x6587;&#x6863;" class="headerlink" title="_post/2016-11-1-first-test.md&#xFF1A;&#x521B;&#x5EFA;&#x6587;&#x7AE0;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;html/md&#x4E24;&#x79CD;&#x683C;&#x5F0F;&#x7684;&#x6587;&#x6863;"></a>_post/2016-11-1-first-test.md&#xFF1A;&#x521B;&#x5EFA;&#x6587;&#x7AE0;&#xFF0C;&#x53EF;&#x4EE5;&#x91C7;&#x7528;html/md&#x4E24;&#x79CD;&#x683C;&#x5F0F;&#x7684;&#x6587;&#x6863;</h5><p><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-8.png" alt="&#x56FE;-8"></p>
+<p>&#x5177;&#x4F53;&#x7684;&#x6A21;&#x677F;&#x67B6;&#x6784;&#xFF0C;&#x5927;&#x5BB6;&#x53EF;&#x4EE5;&#x53C2;&#x9605;<a href="http://jekyllrb.com/" target="_blank" rel="external">Jekyll&#x7684;&#x5B98;&#x65B9;&#x793E;&#x533A;</a></p>
+<h5 id="&#x6700;&#x540E;&#x6211;&#x7684;&#x201C;&#x535A;&#x5BA2;&#x201D;&#x5C31;&#x505A;&#x597D;&#x4E86;-LOL"><a href="#&#x6700;&#x540E;&#x6211;&#x7684;&#x201C;&#x535A;&#x5BA2;&#x201D;&#x5C31;&#x505A;&#x597D;&#x4E86;-LOL" class="headerlink" title="&#x6700;&#x540E;&#x6211;&#x7684;&#x201C;&#x535A;&#x5BA2;&#x201D;&#x5C31;&#x505A;&#x597D;&#x4E86;,LOL~~"></a>&#x6700;&#x540E;&#x6211;&#x7684;&#x201C;&#x535A;&#x5BA2;&#x201D;&#x5C31;&#x505A;&#x597D;&#x4E86;,LOL~~</h5><p><img src="/2016/11/28/GitHub&#x642D;&#x5EFA;&#x535A;&#x5BA2;&#x7B14;&#x8BB0;&#xFF08;&#x4E00;&#xFF09;Jekyll&#x5EFA;&#x7AD9;/&#x56FE;-9.png" alt="&#x56FE;-9"></p>
+<p><strong>&#x4EC0;&#x4E48;&#x9B3C;&#xFF01;&#xFF01;&#xFF01;&#x600E;&#x4E48;&#x8FD9;&#x4E48;&#x4E11;&#xFF01;&#xFF01;&#x6211;&#x5F00;&#x59CB;&#x80FD;&#x4F53;&#x4F1A;&#x751F;&#x51FA;&#x4E00;&#x4E2A;&#x4E11;&#x513F;&#x5B50;&#x7684;&#x611F;&#x89C9;&#x4E86;&#xFF0C;&#x771F;&#x60F3;&#x585E;&#x56DE;&#x53BB;&#x91CD;&#x751F;&#xFF0C;&#x4E0D;&#x8FC7;&#x65B9;&#x6CD5;&#x6211;&#x5148;Google&#x4E00;&#x4E0B;&#x3002;</strong></p>
+<p><strong>&#x4F17;&#x91CC;&#x5BFB;&#x4ED6;&#x5343;&lt;&#x767E;&#x5EA6;&gt;, &#x84E6;&#x7136;&#x56DE;&#x9996;&#x706F;&#x706B;&#x9611;&#x73CA;&#x5904;&#xFF0C;&#x67E5;&#x5230;&#x4E00;&#x4E2A;&#x57FA;&#x4E8E;Node.JS&#x7684;blog&#x6846;&#x67B6;-Hexo&#x3002;<br>&#x91CD;&#x6765;&#xFF01;&#x91CD;&#x6765;&#xFF01;&#x91CD;&#x6765;&#xFF01;</strong></p>
+<blockquote>
+<p>&#x201C;&#x767E;&#x5EA6;&#x201D;&#x8FD9;&#x4E00;&#x516C;&#x53F8;&#x540D;&#x79F0;&#x4FBF;&#x6765;&#x81EA;&#x8FD9;&#x53E5;&#x5B8B;&#x8BCD;&#x3002; &#x767E;&#x5EA6;&#x516C;&#x53F8;&#x4F1A;&#x8BAE;&#x5BA4;&#x540D;&#x4E3A;&#x9752;&#x7389;&#x6848;&#xFF0C;&#x5373;&#x662F;&#x8FD9;&#x9996;&#x8BCD;&#x7684;&#x8BCD;&#x724C;</p>
+</blockquote>
+
+
+                <hr>
+
+                
+                <!-- 多说 Share start -->
+                </style>
+                <div class="ds-share"
+                    style="text-align: right"
+                    data-thread-key="2016/11/28/GitHub搭建博客笔记（一）Jekyll建站/"
+                    data-title="GitHub搭建博客笔记（一）Jekyll建站"
+                    data-url="http://icobweb.com/2016/11/28/GitHub搭建博客笔记（一）Jekyll建站/"
+                    data-images=""
+                    data-content="&#x5728;GitHub&#x4E0B;&#x642D;&#x5EFA;&#x5C5E;&... | Keith的博客 | Keith&#39;s Blog " >
+                    <div class="ds-share-inline">
+                      <ul  class="ds-share-icons-16">
+                        <li data-toggle="ds-share-icons-more"><a class="ds-more" href="#">分享到：</a></li>
+                        <li><a class="ds-wechat flat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+                        <li><a class="ds-weibo flat" href="javascript:void(0);" data-service="weibo">微博</a></li>
+                        <li><a class="ds-douban flat" href="javascript:void(0);" data-service="douban">豆瓣</a></li>
+                      </ul>
+                      <div class="ds-share-icons-more">
+                      </div>
+                    </div>
+                <hr>
+                </div>
+                <!-- 多说 Share end-->
+                
+
+                <ul class="pager">
+                    
+                    
+                        <li class="next">
+                            <a href="/2016/11/25/包子自学日志（二）配置及使用vim/" data-toggle="tooltip" data-placement="top" title="包子自学日志（二）配置及使用vim">Next Post &rarr;</a>
+                        </li>
+                    
+                </ul>
+
+                
+                <!-- 多说评论框 start -->
+                <div class="comment">
+                    <div class="ds-thread"
+                        data-thread-key="2016/11/28/GitHub搭建博客笔记（一）Jekyll建站/"
+                        data-title="GitHub搭建博客笔记（一）Jekyll建站"
+                        data-url="http://icobweb.com/2016/11/28/GitHub搭建博客笔记（一）Jekyll建站/" >
+                    </div>
+                </div>
+                <!-- 多说评论框 end -->
+                
+
+                
+                <!-- disqus 评论框 start -->
+                <div class="comment">
+                    <div id="disqus_thread" class="disqus-thread"></div>
+                </div>
+                <!-- disqus 评论框 end -->
+                
+
+            </div>
+    <!-- Side Catalog Container -->
+        
+
+    <!-- Sidebar Container -->
+
+            <div class="
+                col-lg-8 col-lg-offset-2
+                col-md-10 col-md-offset-1
+                sidebar-container">
+
+                <!-- Featured Tags -->
+                
+                <section>
+                    <!-- no hr -->
+                    <h5><a href="/tags/">FEATURED TAGS</a></h5>
+                    <div class="tags">
+                       
+                          <a class="tag" href="/tags/#Blog" title="Blog">Blog</a>
+                        
+                          <a class="tag" href="/tags/#Jekyll" title="Jekyll">Jekyll</a>
+                        
+                          <a class="tag" href="/tags/#GitHub" title="GitHub">GitHub</a>
+                        
+                    </div>
+                </section>
+                
+
+                <!-- Friends Blog -->
+                
+                <hr>
+                <h5>FRIENDS</h5>
+                <ul class="list-inline">
+
+                    
+                        <li><a href="http://blog.kaijun.rocks" target="_blank">Kaijun&#39;s Blog</a></li>
+                    
+                        <li><a href="http://huangxuan.me" target="_blank">Hux Blog</a></li>
+                    
+                        <li><a href="#" target="_blank">give me a teacher</a></li>
+                    
+                </ul>
+                
+            </div>
+
+        </div>
+    </div>
+</article>
+
+
+<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    // dynamic User by Hux
+    var _user = 'keithran';
+
+    // duoshuo comment query.
+    var duoshuoQuery = {short_name: _user };
+    (function() {
+        var ds = document.createElement('script');
+        ds.type = 'text/javascript';ds.async = true;
+        ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+        ds.charset = 'UTF-8';
+        (document.getElementsByTagName('head')[0]
+         || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+</script>
+<!-- 多说公共JS代码 end -->
+
+
+
+<!-- disqus 公共JS代码 start (一个网页只需插入一次) -->
+<script type="text/javascript">
+    /* * * CONFIGURATION VARIABLES * * */
+    var disqus_shortname = "keithran23";
+    var disqus_identifier = "http://icobweb.com/2016/11/28/GitHub搭建博客笔记（一）Jekyll建站/";
+    var disqus_url = "http://icobweb.com/2016/11/28/GitHub搭建博客笔记（一）Jekyll建站/";
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<!-- disqus 公共JS代码 end -->
+
+
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+<!-- anchor-js, Doc:http://bryanbraun.github.io/anchorjs/ -->
+<script>
+    async("http://cdn.bootcss.com/anchor-js/1.1.1/anchor.min.js",function(){
+        anchors.options = {
+          visible: 'always',
+          placement: 'right',
+          icon: '#'
+        };
+        anchors.add().remove('.intro-header h1').remove('.subheading').remove('.sidebar-container h5');
+    })
+</script>
+<style>
+    /* place left on bigger screen */
+    @media all and (min-width: 800px) {
+        .anchorjs-link{
+            position: absolute;
+            left: -0.75em;
+            font-size: 1.1em;
+            margin-top : -0.1em;
+        }
+    }
+</style>
+
+
+
+    <!-- Footer -->
+    <!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center">
+                
+                
+                
+                    <li>
+                        <a target="_blank" href="https://www.zhihu.com/people/keith-ran">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa  fa-stack-1x fa-inverse">知</i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank" href="http://weibo.com/ralatiy23">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-weibo fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://github.com/Keithran">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                
+                    <li>
+                        <a target="_blank"  href="https://www.linkedin.com/in/keithran23">
+                            <span class="fa-stack fa-lg">
+                                <i class="fa fa-circle fa-stack-2x"></i>
+                                <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                            </span>
+                        </a>
+                    </li>
+                
+
+                </ul>
+                <p class="copyright text-muted">
+                    Copyright &copy; Keith&#39;s Blog 2016 
+                    <br>
+                    Website by <a href="http://icobweb.com">Keith</a> 
+                    <span style="display: inline-block; margin: 0 5px;">
+                        <i class="fa fa-heart"></i>
+                    </span> 
+                    Follow me <a href="http://icobweb.com">Keithran</a> | 
+                    <iframe
+                        style="margin-left: 2px; margin-bottom:-5px;"
+                        frameborder="0" scrolling="0" width="91px" height="20px"
+                        src="https://ghbtns.com/github-btn.html?user=keithran&repo=icobweb&type=star&count=true" >
+                    </iframe>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/js/bootstrap.min.js"></script>
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/hux-blog.min.js"></script>
+
+
+<!-- async load function -->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
+<!-- 
+     Because of the native support for backtick-style fenced code blocks 
+     right within the Markdown is landed in Github Pages, 
+     From V1.6, There is no need for Highlight.js, 
+     so Huxblog drops it officially.
+
+     - https://github.com/blog/2100-github-pages-now-faster-and-simpler-with-jekyll-3-0  
+     - https://help.github.com/articles/creating-and-highlighting-code-blocks/    
+-->
+<!--
+    <script>
+        async("http://cdn.bootcss.com/highlight.js/8.6/highlight.min.js", function(){
+            hljs.initHighlightingOnLoad();
+        })
+    </script>
+    <link href="http://cdn.bootcss.com/highlight.js/8.6/styles/github.min.css" rel="stylesheet">
+-->
+
+
+<!-- jquery.tagcloud.js -->
+<script>
+    // only load tagcloud.js in tag.html
+    if($('#tag_cloud').length !== 0){
+        async("http://icobweb.com/js/jquery.tagcloud.js",function(){
+            $.fn.tagcloud.defaults = {
+                //size: {start: 1, end: 1, unit: 'em'},
+                color: {start: '#bbbbee', end: '#0085a1'},
+            };
+            $('#tag_cloud a').tagcloud();
+        })
+    }
+</script>
+
+<!--fastClick.js -->
+<script>
+    async("http://cdn.bootcss.com/fastclick/1.0.6/fastclick.min.js", function(){
+        var $nav = document.querySelector("nav");
+        if($nav) FastClick.attach($nav);
+    })
+</script>
+
+
+<!-- Google Analytics -->
+
+
+<script>
+    // dynamic User 
+    var _gaId = 'UA-49627206-1';
+    var _gaDomain = 'icobweb.com';
+
+    // Originial
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', _gaId, _gaDomain);
+    ga('send', 'pageview');
+</script>
+
+
+
+
+<!-- Baidu Tongji -->
+
+<script>
+    // dynamic User
+    var _baId = 'a6f9b15833c16d4509512e65ecc568ce';
+
+    // Originial
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//hm.baidu.com/hm.js?" + _baId;
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+
+<!-- Side Catalog -->
+
+
+
+
+
+<!-- Image to hack wechat -->
+<img src="http://icobweb.com/img/icon_wechat.png" width="0" height="0" />
+<!-- Migrate from head to bottom, no longer block render and still work -->
+
+</body>
+
+</html>
